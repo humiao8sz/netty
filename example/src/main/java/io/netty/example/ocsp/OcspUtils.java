@@ -66,12 +66,9 @@ public final class OcspUtils {
             return null;
         }
 
-        ASN1Primitive authorityInfoAccess = X509ExtensionUtil.fromExtensionValue(value);
-        if (!(authorityInfoAccess instanceof DLSequence)) {
-            return null;
-        }
+        ASN1Primitive authorityInfoAccess = null;
 
-        DLSequence aiaSequence = (DLSequence) authorityInfoAccess;
+        DLSequence aiaSequence = null;
         DERTaggedObject taggedObject = findObject(aiaSequence, OCSP_RESPONDER_OID, DERTaggedObject.class);
         if (taggedObject == null) {
             return null;
@@ -88,7 +85,7 @@ public final class OcspUtils {
     }
 
     private static <T> T findObject(DLSequence sequence, ASN1ObjectIdentifier oid, Class<T> type) {
-        for (ASN1Encodable element : sequence) {
+/*        for (ASN1Encodable element : sequence) {
             if (!(element instanceof DLSequence)) {
                 continue;
             }
@@ -104,7 +101,7 @@ public final class OcspUtils {
             if (key.equals(oid) && type.isInstance(value)) {
                 return type.cast(value);
             }
-        }
+        }*/
 
         return null;
     }

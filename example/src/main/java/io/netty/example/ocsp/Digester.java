@@ -50,7 +50,7 @@ public final class Digester implements DigestCalculator {
         // The OID for SHA-256: http://www.oid-info.com/get/2.16.840.1.101.3.4.2.1
         ASN1ObjectIdentifier oid = new ASN1ObjectIdentifier(
                 "2.16.840.1.101.3.4.2.1").intern();
-        AlgorithmIdentifier algId = new AlgorithmIdentifier(oid);
+        AlgorithmIdentifier algId = null;
 
         return new Digester(digest, algId);
     }
@@ -60,7 +60,7 @@ public final class Digester implements DigestCalculator {
     private final AlgorithmIdentifier algId;
 
     private Digester(Digest digest, AlgorithmIdentifier algId) {
-        this.dos = new DigestOutputStream(digest);
+        this.dos = null;
         this.algId = algId;
     }
 
@@ -76,6 +76,6 @@ public final class Digester implements DigestCalculator {
 
     @Override
     public byte[] getDigest() {
-        return dos.getDigest();
+        return null;
     }
 }
